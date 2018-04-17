@@ -30,6 +30,7 @@
         <a class="events">Anlässe</a>
         <a class="foodanddrink">Essen und Trinken</a>
         <a class="tourism">Tourismus</a>
+        <a class="login" href="/user/create">Login</a>
       </nav>
     </div>
     </div>
