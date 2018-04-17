@@ -49,17 +49,24 @@ class UserRepository extends Repository
 
         return $statement->insert_id;
     }
-    public function getPW($email){
-        $query = "SELECT password FROM $this->tableName WHERE email= ?";
+    public function getPW($email,$password){
+        $query = "SELECT uid FROM $this->tableName WHERE email = ?  AND password = ?";
+        echo $query;
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('s',$email);
+        $statement->bind_param('ss',$email,sha1($password));
+        $id =0;
+
         if($statement->execute()){
-            $result =  mysqli_stmt_get_result($statement);
-            return $result;
+            echo "Test";
+            $statement->bind_result($id);
+            $statement->fetch();
+            return $id;
+
         }
         else{
-            $meldung = "Ihr Benutzerkonto konnte nicht gefunden werden!";
+            $_POST['meldung'] = "Ihr Benutzerkonto konnte nicht gefunden werden!";
             throw new Exception($statement->error);
         }
+
     }
 }

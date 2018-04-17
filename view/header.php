@@ -22,7 +22,7 @@
   <body>
     <div class="navbar-head">
       <div id="logo">
-        <img id="piclogo" src="/images/logo.png">
+          <a href="/"><img id="piclogo" src="/images/logo.png"></a>
       </div>
       <div id="links">
       <nav>
@@ -30,7 +30,7 @@
         <a class="events">Anlässe</a>
         <a class="foodanddrink">Essen und Trinken</a>
         <a class="tourism">Tourismus</a>
-        <a class="login" href="/user/create">Login</a>
+        <a class="login" href="/user/login">Login</a>
       </nav>
     </div>
     </div>

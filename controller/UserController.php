@@ -7,7 +7,7 @@ require_once '../repository/UserRepository.php';
  */
 class UserController
 {
-    public $meldung;
+
     public function index()
     {
         $userRepository = new UserRepository();
@@ -33,6 +33,31 @@ class UserController
         $view->heading = 'Anmelden';
         $view->display();
     }
+
+    /**
+     * @return mixed
+     */
+    public function checkLogin(){
+        if ($_POST['send']){
+            $email = $_POST['email'];
+            $pw = $_POST['password'];
+            $userRepo = new UserRepository();
+            echo $email;
+            echo sha1($pw);
+            $id = $userRepo->getPW($email);
+            echo "ID:".$id;
+            if($id>0){
+                $_SESSION[$id];
+                echo "Test";
+                header('Location /');
+            }
+            else{
+                header('Location /user/login');
+                $_POST['meldung'] = "Ihr Passwort ist falsch";
+            }
+        }
+    }
+
     public function doCreate()
     {
         if ($_POST['send']) {
@@ -53,7 +78,6 @@ class UserController
 
 
     }
-
     public function delete()
     {
         $userRepository = new UserRepository();
@@ -61,20 +85,5 @@ class UserController
 
         // Anfrage an die URI /user weiterleiten (HTTP 302)
         header('Location: /user');
-    }
-    public function checkLogin(){
-        if ($_POST['send']){
-            $email = $_POST['email'];
-            $pw = $_POST['email'];
-            $userRepo = new UserRepository();
-            if($pw==$userRepo->getPW($email)){
-                $_SESSION[$email];
-                header('Location /');
-            }
-            else{
-                header('Location /user/login');
-                $_POST['meldung'] = "Ihr Passwort ist falsch";
-            }
-        }
     }
 }

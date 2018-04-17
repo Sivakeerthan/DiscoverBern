@@ -90,6 +90,32 @@ body {
     text-decoration: none;
     transition: 112ms;
 }
+#meldung{
+  color:white;
+}
+#randomImg{
+  height:30%;
+  width:100%;
+  display:block;
+  padding:150px 0 0 0 ;
+  Position:absolute;
+  margin-top:100px;
+  top:0;
+  left:0;
+}
+.img{
+  height:100%;
+  width:auto;
+  margin:0;
+
+}
+.descr{
+  color:white;
+}
+#gallery{
+  margin-top:300px;
+  display:block;
+}
 #piclogo{
 
 }
