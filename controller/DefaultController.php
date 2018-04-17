@@ -32,10 +32,6 @@ class DefaultController
      * beschrieben.
      */
 
-     public function randomImage(){
-       $images = array('/images/random_image/img1.jpg', '/images/random_image/img2.jpg','/images/random_image/img3.jpg','/images/random_image/img4.jpg','/images/random_image/img5.jpg','/images/random_image/img6.jpg','/images/random_image/img7.jpg');
-
-     }
     public function index()
     {
         // In diesem Fall möchten wir dem Benutzer die View mit dem Namen
@@ -44,6 +40,12 @@ class DefaultController
         $view = new View('default_index');
         $view->title = 'DiscoverBern';
         $view->heading = 'Home';
+        $images = array('/images/random_image/img1.jpg', '/images/random_image/img2.jpg','/images/random_image/img3.jpg','/images/random_image/img4.jpg','/images/random_image/img5.jpg','/images/random_image/img6.jpg','/images/random_image/img7.jpg');
+        shuffle($images);
+        $view->img1 = $images[0];
+        $view->img2 = $images[1];
+        $view->img3 = $images[2];
+        $view->img4 = $images[3];
         $view->display();
     }
 }
