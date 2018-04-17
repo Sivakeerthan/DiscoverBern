@@ -31,6 +31,11 @@ class DefaultController
      * welcher Controller und welche Methode aufgerufen wird, ist im Dispatcher
      * beschrieben.
      */
+
+     public function randomImage(){
+       $images = array('/images/random_image/img1.jpg', '/images/random_image/img2.jpg','/images/random_image/img3.jpg','/images/random_image/img4.jpg','/images/random_image/img5.jpg','/images/random_image/img6.jpg','/images/random_image/img7.jpg');
+
+     }
     public function index()
     {
         // In diesem Fall möchten wir dem Benutzer die View mit dem Namen
