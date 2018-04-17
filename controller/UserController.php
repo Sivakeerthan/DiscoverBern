@@ -27,6 +27,12 @@ class UserController
         $view->display();
     }
 
+    public function login(){
+        $view = new View('user_login');
+        $view->title = 'Anmelden';
+        $view->heading = 'Anmelden';
+        $view->display();
+    }
     public function doCreate()
     {
         if ($_POST['send']) {
@@ -41,7 +47,7 @@ class UserController
 
             }
             else{
-                $meldung = "Ihre Passwörter stimmen nicht überein";
+                $_POST['meldung'] = "Ihre Passwörter stimmen nicht überein";
             }
         }
 
@@ -55,5 +61,20 @@ class UserController
 
         // Anfrage an die URI /user weiterleiten (HTTP 302)
         header('Location: /user');
+    }
+    public function checkLogin(){
+        if ($_POST['send']){
+            $email = $_POST['email'];
+            $pw = $_POST['email'];
+            $userRepo = new UserRepository();
+            if($pw==$userRepo->getPW($email)){
+                $_SESSION[$email];
+                header('Location /');
+            }
+            else{
+                header('Location /user/login');
+                $_POST['meldung'] = "Ihr Passwort ist falsch";
+            }
+        }
     }
 }

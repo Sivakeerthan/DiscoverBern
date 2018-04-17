@@ -43,10 +43,23 @@ class UserRepository extends Repository
         }
         else{
             header('Location /user/create');
-            $meldung = "Es konnte kein Benutzer erstellt werden";
+            $_POST['meldung'] = "Es konnte kein Benutzer erstellt werden";
             throw new Exception($statement->error);
         }
 
         return $statement->insert_id;
+    }
+    public function getPW($email){
+        $query = "SELECT password FROM $this->tableName WHERE email= ?";
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('s',$email);
+        if($statement->execute()){
+            $result =  mysqli_stmt_get_result($statement);
+            return $result;
+        }
+        else{
+            $meldung = "Ihr Benutzerkonto konnte nicht gefunden werden!";
+            throw new Exception($statement->error);
+        }
     }
 }
