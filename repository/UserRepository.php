@@ -28,16 +28,22 @@ class UserRepository extends Repository
      *
      * @throws Exception falls das Ausführen des Statements fehlschlägt
      */
-    public function create($firstName, $lastName, $email, $password)
+    public function create($uname,$email, $pw1)
     {
-        $password = sha1($password);
+        $pw = sha1($pw1);
 
-        $query = "INSERT INTO $this->tableName (firstName, lastName, email, password) VALUES (?, ?, ?, ?)";
+        $query = "INSERT INTO $this->tableName (uname, email, password) VALUES (?, ?, ?)";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('ssss', $firstName, $lastName, $email, $password);
+        $statement->bind_param('sss',$uname, $email, $pw);
 
-        if (!$statement->execute()) {
+        if($statement->execute()) {
+            // Anfrage an die URI /user weiterleiten (HTTP 302)
+            header('Location: /user');
+        }
+        else{
+            header('Location /user/create');
+            $meldung = "Es konnte kein Benutzer erstellt werden";
             throw new Exception($statement->error);
         }
 

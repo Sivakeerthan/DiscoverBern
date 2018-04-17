@@ -7,6 +7,7 @@ require_once '../repository/UserRepository.php';
  */
 class UserController
 {
+    public $meldung;
     public function index()
     {
         $userRepository = new UserRepository();
@@ -29,17 +30,22 @@ class UserController
     public function doCreate()
     {
         if ($_POST['send']) {
-            $firstName = $_POST['firstName'];
-            $lastName = $_POST['lastName'];
-            $email = $_POST['email'];
-            $password = $_POST['password'];
 
-            $userRepository = new UserRepository();
-            $userRepository->create($firstName, $lastName, $email, $password);
+            $uname = $_POST['username'];
+            $email = $_POST['email'];
+            $pw1 = $_POST['password1'];
+            $pw2 = $_POST['password2'];
+            if($pw1==$pw2) {
+                $userRepository = new UserRepository();
+                $userRepository->create($uname, $email, $pw1);
+
+            }
+            else{
+                $meldung = "Ihre Passwörter stimmen nicht überein";
+            }
         }
 
-        // Anfrage an die URI /user weiterleiten (HTTP 302)
-        header('Location: /user');
+
     }
 
     public function delete()
