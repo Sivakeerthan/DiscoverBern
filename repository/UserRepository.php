@@ -64,7 +64,7 @@ class UserRepository extends Repository
 
         }
         else{
-            $_POST['meldung'] = "Ihr Benutzerkonto konnte nicht gefunden werden!";
+           echo '<script>document.getElementById("meldung").value = "Ihr Benutzerkonto existiert nicht" </script>';
             throw new Exception($statement->error);
         }
 
