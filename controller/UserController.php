@@ -56,7 +56,7 @@ class UserController
             }
             else{
                 header('Location /user/login');
-                $_POST['meldung'] = "Ihr Passwort ist falsch";
+                echo '<script>document.getElementById("meldung").value = "Ihr Passwort ist falsch"</script>';
             }
         }
     }
@@ -75,7 +75,7 @@ class UserController
 
             }
             else{
-                $_POST['meldung'] = "Ihre Passwörter stimmen nicht überein";
+                echo '<script>document.getElementById("meldung").value = "Ihre Passwörter stimmen nicht überein"</script>';
             }
         }
 
