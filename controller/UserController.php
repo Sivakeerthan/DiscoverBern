@@ -42,14 +42,15 @@ class UserController
             $email = $_POST['email'];
             $pw = $_POST['password'];
             $userRepo = new UserRepository();
-            echo $email;
-            echo sha1($pw);
-            $id = $userRepo->getPW($email);
-            echo "ID:".$id;
+            $id = $userRepo->getPW($email,$pw);
             if($id>0){
-                $_SESSION[$id];
-                echo "Test";
-                header('Location /');
+                $_SESSION[$id] = $email;
+                session_start($_SESSION);
+                if(isset($_SESSION[$id])) {
+                    header('Location /user');
+                    print_r($_SESSION);
+
+                }
             }
             else{
                 header('Location /user/login');

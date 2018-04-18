@@ -30,7 +30,7 @@
 		  </div>
 		</div>
         <div class="form-group">
-            <label class="col-md-2 control-label" name="meldung" id="meldung"><?php $uc = new UserController(); echo $uc->meldung; ?></label>
+            <label class="col-md-2 control-label" name="meldung" id="meldung"></label>
         </div>
 	</div>
 </form>
