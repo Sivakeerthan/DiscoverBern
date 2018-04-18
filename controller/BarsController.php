@@ -1,11 +1,11 @@
 <?php
-class EventsController{
+class BarsController{
 
 
   public function index(){
-    $view = new View('events');
+    $view = new View('bars');
     $view->title = 'DiscoverBern';
-    $view->heading = 'Anlässe';
+    $view->heading = 'Bars';
     $view->display();
 
 

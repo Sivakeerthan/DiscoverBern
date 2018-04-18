@@ -23,7 +23,7 @@ return array(
         'host'     => 'localhost',
         'username' => 'root',
         'password' => '',
-        'database' => 'user',
+        'database' => 'discoverbern',
     ),
 
 );
