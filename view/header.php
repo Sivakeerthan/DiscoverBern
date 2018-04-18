@@ -26,10 +26,10 @@
       </div>
       <div id="links">
       <nav>
-        <a class="nature">Natur</a>
-        <a class="events">Anlässe</a>
-        <a class="foodanddrink">Essen und Trinken</a>
-        <a class="tourism">Tourismus</a>
+        <a class="nature" href="/nature">Natur</a>
+        <a class="events" href="/events">Anlässe</a>
+        <a class="restaurants" href="/restaurants">Restaurants und Bars</a>
+        <a class="tourism" href="/tourism">Tourismus</a>
         <a class="login" href="/user/login">Login</a>
       </nav>
     </div>

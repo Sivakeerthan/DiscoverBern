@@ -25,6 +25,7 @@ body {
   padding-right: 5px;
   padding-top: 8px;
   padding-bottom: 8px;
+  border-radius: 2px;
 }
 .nature{
   color: #4CAF50;
@@ -33,6 +34,7 @@ body {
   padding-right: 5px;
   padding-top: 8px;
   padding-bottom: 8px;
+  border-radius: 2px;
 }
 .tourism{
   color: #FDD835;
@@ -41,6 +43,7 @@ body {
   padding-right: 5px;
   padding-top: 8px;
   padding-bottom: 8px;
+  border-radius: 2px;
 }
 .events{
   color: #F57C00;
@@ -49,8 +52,9 @@ body {
   padding-right: 5px;
   padding-top: 8px;
   padding-bottom: 8px;
+  border-radius: 2px;
 }
-.foodanddrink{
+.restaurants{
   color: #795548;
   font-size: 25px;
   padding: 5px;
@@ -58,6 +62,7 @@ body {
   padding-right: 5px;
   padding-top: 8px;
   padding-bottom: 8px;
+  border-radius: 2px;
 }
 .login:hover{
 
@@ -66,7 +71,7 @@ body {
   text-decoration: none;
   background-color: black;
 }
-.foodanddrink:hover{
+.restaurants:hover{
   color: white;
   background-color: #795548;
     text-decoration: none;
