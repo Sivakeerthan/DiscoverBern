@@ -43,6 +43,7 @@ class UserController
             $pw = $_POST['password'];
             $userRepo = new UserRepository();
             $id = $userRepo->getPW($email,$pw);
+            echo "ID:" . $id;
             if($id>0){
                 $_SESSION[$id] = $email;
                 session_start($_SESSION);
