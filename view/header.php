@@ -22,7 +22,7 @@
   <body>
     <div class="navbar-head">
       <div id="logo">
-          <h1 id="db">DiscoverBern</h1>
+          <a href="/" id="db">DiscoverBern</a>
       </div>
       <div id="links">
       <nav>
