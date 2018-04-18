@@ -22,14 +22,14 @@
   <body>
     <div class="navbar-head">
       <div id="logo">
-          <a href="/"><img id="piclogo" src="/images/logo.png"></a>
+          <h1 id="db">DiscoverBern</h1>
       </div>
       <div id="links">
       <nav>
-        <a class="nature" href="/nature">Natur</a>
-        <a class="events" href="/events">Anlässe</a>
-        <a class="restaurants" href="/restaurants">Restaurants und Bars</a>
-        <a class="tourism" href="/tourism">Tourismus</a>
+        <a class="nature" href="/nature"><img class="navicon4" src="/images/icons/icons8-trekking-48.png" /></a>
+        <a class="bars" href="/bars"><img class="navicon1" src="/images/icons/icons8-bar-48.png" /></a>
+        <a class="restaurants" href="/restaurants"><img class="navicon2" src="/images/icons/icons8-restaurant-48.png" /></a>
+        <a class="tourism" href="/tourism"><img class="navicon3" src="/images/icons/icons8-tourist-männlich-48.png" /></a>
         <a class="login" href="/user/login">Login</a>
       </nav>
     </div>

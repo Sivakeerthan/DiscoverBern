@@ -1,22 +1,28 @@
 body {
-  background-color: black;
+  background-color: #607D8B;
   color: #ECEFF1;
 }
 .navbar-head{
   background-color: white;
-  height: 43px;
+  height: 70px;
   padding-top: 4px;
   padding-bottom: 4px;
+  align-items: center;
+justify-content: center;
+margin: 0 auto;
 }
 #links{
   text-align: right;
   float: right;
+  height: auto;
+
 }
 #logo{
   text-align: left;
   width: 10%;
   margin: 0;
   float: left;
+  height: auto;
 }
 .login{
   color: black;
@@ -45,7 +51,7 @@ body {
   padding-bottom: 8px;
   border-radius: 2px;
 }
-.events{
+.bars{
   color: #F57C00;
   font-size: 25px;
   padding-left: 5px;
@@ -65,35 +71,52 @@ body {
   border-radius: 2px;
 }
 .login:hover{
-
-  color: #FFFFFF;
   transition: 112ms;
-  text-decoration: none;
-  background-color: black;
+  color:black;
 }
-.restaurants:hover{
+.restaurants:hover .navicon2{
   color: white;
-  background-color: #795548;
+  background-color: #A1887F;
     text-decoration: none;
     transition: 112ms;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 2px;
 }
-.nature:hover{
+.nature:hover .navicon4{
   color: white;
-  background-color: #4CAF50;
+  background-color: #81C784;
     text-decoration: none;
     transition: 112ms;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 2px;
 }
-.tourism:hover{
+.tourism:hover .navicon3{
   color: white;
-  background-color: #FFEE58;
+  background-color: #FFF176;
     text-decoration: none;
     transition: 112ms;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 2px;
 }
-.events:hover{
+.bars:hover .navicon1{
   color: white;
-  background-color: #F57C00;
+  background: #FF8A80;
     text-decoration: none;
     transition: 112ms;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 2px;
 }
 #meldung{
   color:white;
@@ -123,4 +146,45 @@ body {
 }
 #piclogo{
 
+}
+.navicon1 {
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 2px;
+}
+.navicon2{
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 2px;
+}
+.navicon3 {
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 2px;
+  margin-right: 50px;
+}
+.navicon4 {
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 2px;
+}
+#db{
+  color:black;
+  font-size: 40px;
+}
+
+#register{
+  color: #ECEFF1;
+  text-decoration: underline;
+}
+#register:hover{
+  font-size: 15px;
 }
