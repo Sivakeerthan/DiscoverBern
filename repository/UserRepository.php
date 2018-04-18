@@ -50,14 +50,14 @@ class UserRepository extends Repository
         return $statement->insert_id;
     }
     public function getPW($email,$password){
-        $query = "SELECT uid FROM $this->tableName WHERE email = ?  AND password = ?";
-        echo $query;
+        $query = "SELECT uid FROM user WHERE password = sha1(?) AND email = ?";
+
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('ss',$email,sha1($password));
+        $statement->bind_param('ss',$password,$email);
         $id =0;
 
         if($statement->execute()){
-            echo "Test";
+
             $statement->bind_result($id);
             $statement->fetch();
             return $id;
