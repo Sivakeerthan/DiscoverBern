@@ -11,11 +11,12 @@ class UserController
     public function index()
     {
         $userRepository = new UserRepository();
-
         $view = new View('user_index');
+        session_start();
+        $view->user = $userRepository->readAll(2);
+        print_r($view->user);
         $view->title = 'Benutzer';
         $view->heading = 'Benutzer';
-        $view->users = $userRepository->readAll();
         $view->display();
     }
 
@@ -42,13 +43,13 @@ class UserController
             $email = $_POST['email'];
             $pw = $_POST['password'];
             $userRepo = new UserRepository();
-            $id = $userRepo->getPW($email,$pw);
-            echo "ID:" . $id;
+            $id = $userRepo->getID($email,$pw);
+            echo "ID:".$id;
             if($id>0){
-                $_SESSION[$id] = $email;
-                session_start($_SESSION);
-                if(isset($_SESSION[$id])) {
-                    header('Location /user');
+                session_start();
+                $_SESSION['id'] = $id;
+                if(isset($_SESSION['id'])) {
+                    header('Location: /user');
                     print_r($_SESSION);
 
                 }

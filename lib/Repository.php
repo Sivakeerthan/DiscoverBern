@@ -131,9 +131,9 @@ class Repository
      *
      * @return Ein array mit den gefundenen Datensätzen.
      */
-    public function readAll($max = 100)
+    public function readAll($id)
     {
-        $query = "SELECT * FROM {$this->tableName} LIMIT 0, $max";
+        $query = "SELECT * FROM 'user' WHERE uid = ? LIMIT 0";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
         $statement->execute();
