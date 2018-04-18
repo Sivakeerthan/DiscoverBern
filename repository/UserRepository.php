@@ -49,7 +49,7 @@ class UserRepository extends Repository
 
         return $statement->insert_id;
     }
-    public function getPW($email,$password){
+    public function getID($email,$password){
         $query = "SELECT uid FROM user WHERE password = sha1(?) AND email = ?";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
