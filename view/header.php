@@ -28,7 +28,7 @@
       <nav>
         <a class="nature">Natur</a>
         <a class="events">Anlässe</a>
-        <a class="foodanddrink">Essen und Trinken</a>
+        <a class="restaurants">Restaurants und Bars</a>
         <a class="tourism">Tourismus</a>
         <a class="login" href="/user/login">Login</a>
       </nav>

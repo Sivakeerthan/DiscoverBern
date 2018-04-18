@@ -16,6 +16,9 @@
             <label class="col-md-2 control-label" for="send">&nbsp;</label>
             <div class="col-md-4">
                 <input id="send" name="send" type="submit" class="btn btn-primary">
+              </br>
+              </br>
+                <p>Noch kein Konto? Registrieren sie sich <a id="register" href="create/">hier</a></p>
             </div>
         </div>
         <div class="form-group">
