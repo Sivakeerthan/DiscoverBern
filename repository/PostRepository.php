@@ -1,17 +1,21 @@
 <?php
 
-class PostRepository extends Repository{
+require_once '../lib/Repository.php';
+
+class PostRepository extends Repository
+{
 
     protected $tableName='post';
 
     public function readByCategory($category)
     {
-      $query = "SELECT imgurl FROM post WHERE category = ?";
+      $query = "SELECT imgurl FROM $this->tableName WHERE category_id = (SELECT cid FROM category where category_name = ?)";
       $statement = ConnectionHandler::getConnection()->prepare($query);
       $statement->bind_param('s', $category);
       $statement->execute();
 
       $result = $statement->get_result();
+      print_r($result);
       if (!$result) {
           throw new Exception($statement->error);
       }
