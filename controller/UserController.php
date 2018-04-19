@@ -72,6 +72,7 @@ class UserController
     public function logout(){
         session_destroy();
         unset($_SESSION['uid']);
+        header('Location: /');
     }
     public function doCreate()
     {

@@ -5,7 +5,7 @@ class NatureController{
 
   public function index(){
 
-  session_start();
+
     $postRepository = new PostRepository();
 
     $view = new View('posts');
