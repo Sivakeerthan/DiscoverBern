@@ -20,12 +20,12 @@ class PostController
             $plz =$_POST['postPlace'];
             $imageFileType = strtolower(pathinfo($_FILES['fileToUpload']['name'],PATHINFO_EXTENSION));
             $target_dir = "images/" . $category . "/";
-            $target_file = basename($target_dir."img".$id.'.'.$imageFileType);
-            $this->upload($target_file,$category);
+            $target_file = $target_dir."img".$id.'.'.$imageFileType;
+            $this->upload($target_file);
             $postRepository->insertPost($id,$title, $target_file, $category, $plz,$uid);
             header('Location: /user');
     }
-    function upload($target_file,$category){
+    function upload($target_file){
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         // Check if image file is a actual image or fake image
@@ -60,7 +60,7 @@ class PostController
             echo "Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
         } else {
-            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], 'images/'.$category.'/'.$target_file)) {
+            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                 echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
             } else {
                 echo "Sorry, there was an error uploading your file.";
