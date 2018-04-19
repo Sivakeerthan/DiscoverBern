@@ -14,4 +14,3 @@ require_once '../lib/View.php';
 
 $dispatcher = new Dispatcher();
 $dispatcher->dispatch();
-

@@ -1,5 +1,7 @@
 <article class="hreview open special">
-	<?php if (!isset($_SESSION['uid']) && empty($user)): ?>
+	<?php
+    $ort = array();
+    if (!isset($_SESSION['uid']) && empty($user)): ?>
 		<div class="dhd">
 			<h2 class="item title">Sie müssen sich einloggen!</h2>
 		</div>
@@ -25,10 +27,9 @@
                 </div><div class="form-group">
                     <label for="postPlace">Ort:</label>
                     <select name="postPlace" id="postPlace">
-                        <?php foreach($places AS $place){
-                            echo "<option value='$place->ort'>$place->plz".' '."$place->ort</option>";
-                        }
-                        ?>
+                        <?php foreach ($places AS $place): ?>
+                            <option value='<?= $place->plz ?>'><?= $place->plz ?> <?= $place->ort ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div<div class="form-group">
                     <input type="submit" name="submit" value="Posten">

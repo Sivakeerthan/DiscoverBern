@@ -60,7 +60,6 @@ class UserController
                 if(isset($_SESSION['uid'])) {
                     header('Location: /user');
                     print_r($_SESSION);
-
                 }
             }
             else{
