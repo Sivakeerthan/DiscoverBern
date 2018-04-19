@@ -37,6 +37,9 @@
                     </form>
                 </div>
 				</div>
+				<div class="showMyPosts">
+
+				</div>
 			</div>
 	<?php endif ?>
 </article>
