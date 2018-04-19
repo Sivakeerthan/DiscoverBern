@@ -15,7 +15,6 @@ class PostRepository extends Repository
       $statement->execute();
 
       $result = $statement->get_result();
-      print_r($result);
       if (!$result) {
           throw new Exception($statement->error);
       }

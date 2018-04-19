@@ -1,17 +1,17 @@
 <?php
-class RestaurantsController{
+require_once '../repository/PostRepository.php';
 
+
+class RestaurantsController{
 
   public function index(){
     $view = new View('array');
-    $restaurantRepository = new PostRepository();
+    $postRepository = new PostRepository();
 
     $view->title = 'DiscoverBern';
     $view->heading = 'Restaurants';
-    $images = $restaurantRepository->readByCategory('restaurants');
-    foreach ($images as $img) {
-      $view->img = $img;
-    }
+    $view->images = $postRepository->readByCategory('restaurants');
+
 
     $view->display();
 

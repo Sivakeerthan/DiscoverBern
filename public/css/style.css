@@ -10,6 +10,8 @@ body {
   align-items: center;
 justify-content: center;
 margin: 0 auto;
+position: fixed;
+width: 100%;
 }
 #links{
   text-align: right;
@@ -121,7 +123,7 @@ margin: 0 auto;
 #meldung{
   color:white;
 }
-#randomImg{
+.rows{
   height:30%;
   width:100%;
   display:inline-block;
@@ -175,8 +177,8 @@ margin: 0 auto;
   border-radius: 2px;
 }
 #db{
-  color:black;
-  font-size: 40px;
+  height: auto;
+  width: auto;
 }
 
 #db:hover{
@@ -193,7 +195,7 @@ margin: 0 auto;
 .container{
   background-color:white;
   color: black;
-  margin:  10px 10% 0 10%;
+  margin:  100px 10% 0 10%;
   display:inline-block;
   white-space: nowrap;
   overflow: auto;
