@@ -68,7 +68,7 @@ VALUES                              (?,?,?,?,?);";
             throw new Exception($statement2->error);
         }
         $statement3 = ConnectionHandler::getConnection()->prepare($mainquery);
-        $statement3->bind_param('ssiii',$title,$imgurl,$cid,$oid,$uid);
+        $statement3->bind_param('ssssi',$title,$imgurl,$cid,$oid,$uid);
         $statement3->execute();
         if(!$statement3->execute()){
             throw new Exception($statement3->error);
