@@ -9,7 +9,7 @@ class PostRepository extends Repository
 
     public function readByCategory($category)
     {
-      $query = "SELECT imgurl FROM $this->tableName WHERE category_id = (SELECT cid FROM category where category_name = ?)";
+      $query = "SELECT p.imgurl, p.title, u.uname FROM $this->tableName AS p JOIN user AS u ON p.user_id=u.uid WHERE category_id = (SELECT cid FROM category where category_name = ?)";
       $statement = ConnectionHandler::getConnection()->prepare($query);
       $statement->bind_param('s', $category);
       $statement->execute();
