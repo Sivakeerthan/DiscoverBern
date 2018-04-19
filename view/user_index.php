@@ -18,7 +18,6 @@
                         <select name="postCategory" id="postCategory">
                             <option value="restaurants">Restaurants</option>
                             <option value="bars">Bars</option>
-                            <option value="nature">Natur</option>
                             <option value="wandern">Wandern</option>
                             <option value="tourism">Tourismus</option>
                         </select>
@@ -27,7 +26,7 @@
                     <label for="postPlace">Ort:</label>
                     <select name="postPlace" id="postPlace">
                         <?php foreach($places AS $place){
-                            echo "<option value='$place->plz'>$place->plz".' '."$place->ort</option>";
+                            echo "<option value='$place->ort'>$place->plz".' '."$place->ort</option>";
                         }
                         ?>
                     </select>

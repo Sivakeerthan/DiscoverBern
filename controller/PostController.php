@@ -10,19 +10,23 @@ require_once '../repository/PostRepository.php';
 class PostController
 {
     function create(){
-        $title = htmlspecialchars($_POST['postTitle']);
-        $category = $_POST['postCategory'];
-        $postRepository = new PostRepository();
-        $id= count($postRepository->readAll())+1;
-        $place = $_POST['postPlace'];
-        $target_dir = "/Images/".$category."/";
-        $target_file = $target_dir . "img".$id;
-        $this->upload($target_file);
-        $postRepository->insertPost($title,$target_file,$category,$place);
+
+            $title = htmlspecialchars($_POST['postTitle']);
+            $category = $_POST['postCategory'];
+            $postRepository = new PostRepository();
+            $id = count($postRepository->readAll()) + 1;
+            $uid = $_SESSION['uid'];
+            $place = $_POST['postPlace'];
+            $target_dir = "/images/" . $category . "/";
+            $target_file = $target_dir . "img" . $id;
+            $this->upload($target_file);
+            $postRepository->insertPost($title, $target_file, $category, $place,$uid);
     }
     function upload($target_file){
         $uploadOk = 1;
-        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+        $img= getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+        $imageFileType = $img["mime"];
+
         // Check if image file is a actual image or fake image
         if(isset($_POST["submit"])) {
             $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
