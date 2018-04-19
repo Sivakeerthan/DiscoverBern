@@ -3,6 +3,7 @@
 require_once '../repository/UserRepository.php';
 require_once '../repository/PlaceRepository.php';
 
+
 /**
  * Siehe Dokumentation im DefaultController.
  */
@@ -13,13 +14,19 @@ class UserController
     {
         $userRepository = new UserRepository();
         $view = new View('user_index');
-        session_start();
-        $view->user = $userRepository->readById($_SESSION['uid']);
         $view->title = 'Profil';
-        $view->heading = $view->user->uname;
-        $placeRepository = new PlaceRepository();
-        $view->places = $placeRepository->readAll();
-        $view->display();
+        session_start();
+        if(isset($_SESSION['uid'])) {
+            $view->user = $userRepository->readById($_SESSION['uid']);
+            $view->heading = $view->user->uname;
+            $placeRepository = new PlaceRepository();
+            $view->places = $placeRepository->readAll();
+            $view->display();
+        }
+        else{
+            $view->heading = "Access Denied!";
+            $view->display();
+        }
     }
 
     public function create()
