@@ -5,8 +5,7 @@
 		</div>
 	<?php else: ?>
 			<div class="panel panel-default">
-				<div class="panel-heading"><?= $user->uname;?></div>
-				<div class="panel-body">
+                <div id="createPost)"></div>
 				</div>
 			</div>
 	<?php endif ?>

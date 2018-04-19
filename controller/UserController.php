@@ -13,10 +13,9 @@ class UserController
         $userRepository = new UserRepository();
         $view = new View('user_index');
         session_start();
-        $view->user = $userRepository->readAll(2);
-        print_r($view->user);
-        $view->title = 'Benutzer';
-        $view->heading = 'Benutzer';
+        $view->user = $userRepository->readById($_SESSION['uid']);
+        $view->title = 'Profil';
+        $view->heading = $view->user->uname;
         $view->display();
     }
 
@@ -47,16 +46,17 @@ class UserController
             echo "ID:".$id;
             if($id>0){
                 session_start();
-                $_SESSION['id'] = $id;
-                if(isset($_SESSION['id'])) {
+                $_SESSION['uid'] = $id;
+                if(isset($_SESSION['uid'])) {
                     header('Location: /user');
                     print_r($_SESSION);
 
                 }
             }
             else{
-                header('Location /user/login');
-                echo '<script>document.getElementById("meldung").value = "Ihr Passwort ist falsch"</script>';
+                header('Location: /user/login');
+                echo '<script>document.getElementById("meldung").text = "Ihr Passwort ist falsch"</script>';
+                $_POST['meldung'] = "Ihr Passwort ist falsch";
             }
         }
     }

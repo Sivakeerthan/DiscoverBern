@@ -91,7 +91,7 @@ class Repository
      *
      * @return Der gesuchte Datensatz oder null, sollte dieser nicht existieren.
      */
-    public function readById($id)
+    public function readByIdX($id)
     {
         // Query erstellen
         $query = "SELECT * FROM {$this->tableName} WHERE id=?";
@@ -131,9 +131,9 @@ class Repository
      *
      * @return Ein array mit den gefundenen Datensätzen.
      */
-    public function readAll($id)
+    public function readAll($max = 100)
     {
-        $query = "SELECT * FROM 'user' WHERE uid = ? LIMIT 0";
+        $query = "SELECT * FROM {$this->tableName} LIMIT 0, $max";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
         $statement->execute();
