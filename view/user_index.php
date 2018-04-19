@@ -31,7 +31,9 @@
                         }
                         ?>
                     </select>
-                </div>
+                </div<div class="form-group">
+                    <input type="submit" name="submit" value="Posten">
+                    </div>
                     </form>
                 </div>
 				</div>
