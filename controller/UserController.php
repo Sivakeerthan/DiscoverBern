@@ -1,6 +1,7 @@
 <?php
 
 require_once '../repository/UserRepository.php';
+require_once '../repository/PlaceRepository.php';
 
 /**
  * Siehe Dokumentation im DefaultController.
@@ -17,7 +18,7 @@ class UserController
         $view->title = 'Profil';
         $view->heading = $view->user->uname;
         $placeRepository = new PlaceRepository();
-        $view->places = $placeRepository->readAll(1000);
+        $view->places = $placeRepository->readAll();
         $view->display();
     }
 

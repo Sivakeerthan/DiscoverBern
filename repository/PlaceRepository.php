@@ -8,10 +8,10 @@
 require_once '../lib/Repository.php';
 class PlaceRepository extends Repository
 {
-    protected $tableName = 'place';
-    public function readAll($max = 100)
+    protected $tableName = 'ort';
+    public function readAll($max=1000)
     {
-        $query = "SELECT * FROM {$this->tableName} LIMIT 0, $max";
+        $query = "SELECT * FROM {$this->tableName} ORDER BY plz,ort";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
         $statement->execute();
