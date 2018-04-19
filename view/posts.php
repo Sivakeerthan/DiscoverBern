@@ -22,8 +22,8 @@ echo "<div class='rows'>";
         echo "<label class='userRate'><a href='/user/login'>Einloggen</a> zum Bewerten</label>";
       }
     else {
-      echo "<label class='userRate'>like</label>
-      <label class='userRate'>dislike</label>";
+      echo "<label class='userRate' href='post/rateAdd'>like</label>
+      <label class='userRate' href='post/rateRmv'>dislike</label>";
     }
     echo "
     </div>

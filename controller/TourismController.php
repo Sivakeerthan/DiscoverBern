@@ -4,7 +4,8 @@ require_once '../repository/PostRepository.php';
 class TourismController{
 
   public function index(){
-
+    session_start();
+    $_SESSION['uid'];
     $postRepository = new PostRepository();
 
     $view = new View('posts');

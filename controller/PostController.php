@@ -11,19 +11,20 @@ class PostController
 {
     function create(){
 
-            $title = htmlspecialchars($_POST['postTitle']);
-            $category = $_POST['postCategory'];
-            $postRepository = new PostRepository();
-            $id = count($postRepository->readAll()) + 1;
-            session_start();
-            $uid = $_SESSION['uid'];
-            $plz =$_POST['postPlace'];
-            $imageFileType = strtolower(pathinfo($_FILES['fileToUpload']['name'],PATHINFO_EXTENSION));
-            $target_dir = "images/" . $category . "/";
-            $target_file = $target_dir."img".$id.'.'.$imageFileType;
-            $this->upload($target_file);
-            $postRepository->insertPost($id,$title, $target_file, $category, $plz,$uid);
-            header('Location: /user');
+      $title = htmlspecialchars($_POST['postTitle']);
+      $category = $_POST['postCategory'];
+      $postRepository = new PostRepository();
+      $id = count($postRepository->readAll()) + 1;
+      session_start();
+      $uid = $_SESSION['uid'];
+      $plz =$_POST['postPlace'];
+      $imageFileType = strtolower(pathinfo($_FILES['fileToUpload']['name'],PATHINFO_EXTENSION));
+      $target_dir = "/images/" . $category . "/";
+      $target_file = $target_dir."img".$id.'.'.$imageFileType;
+      $this->upload($target_file);
+      $postRepository->insertPost($id,$title, $target_file, $category, $plz,$uid);
+      header('Location: /user');
+      exit();
     }
     function upload($target_file){
         $uploadOk = 1;
@@ -66,5 +67,22 @@ class PostController
                 echo "Sorry, there was an error uploading your file.";
             }
         }
+
+    }
+    public function rateAdd(){
+        $view = new View('user_index');
+        $postRepository = new PostRepository();
+        $post = $postRepository->getPostByUrl($view->img->imgurl);
+        $postRepository->doRateAdd($post);
+        header('Location: /'.$view->img->category);
+        exit();
+    }
+    public function rateRmv(){
+        $view = new View('user_index');
+        $postRepository = new PostRepository();
+        $post = $postRepository->getPostByUrl($view->img->imgurl);
+        $postRepository->doRateRmv($post);
+        header('Location: /'.$view->img->category);
+        exit();
     }
 }
