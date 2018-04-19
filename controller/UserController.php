@@ -16,6 +16,8 @@ class UserController
         $view->user = $userRepository->readById($_SESSION['uid']);
         $view->title = 'Profil';
         $view->heading = $view->user->uname;
+        $placeRepository = new PlaceRepository();
+        $view->places = $placeRepository->readAll(1000);
         $view->display();
     }
 
