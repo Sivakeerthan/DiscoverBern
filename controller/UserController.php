@@ -69,7 +69,10 @@ class UserController
             }
         }
     }
-
+    public function logout(){
+        session_destroy();
+        unset($_SESSION['uid']);
+    }
     public function doCreate()
     {
         if ($_POST['send']) {

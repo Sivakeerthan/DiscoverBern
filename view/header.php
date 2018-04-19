@@ -32,7 +32,11 @@
         <a class="bars" href="/bars"><img class="navicon1" src="/images/icons/icons8-bar-48.png" /></a>
         <a class="restaurants" href="/restaurants"><img class="navicon2" src="/images/icons/icons8-restaurant-48.png" /></a>
         <a class="tourism" href="/tourism"><img class="navicon3" src="/images/icons/icons8-tourist-männlich-48.png" /></a>
-        <a class="login" href="/user/login">Login</a>
+          <?php if(isset($_SESSION['uid'])):?>
+          <a class="login" href="/user/logout">Logout</a>
+          <?php else:?>
+            <a class="login" href="/user/login">Login</a>
+          <?php endif ?>
       </nav>
     </div>
     </div>
