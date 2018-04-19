@@ -48,31 +48,12 @@ class PostRepository extends Repository
 
         return $rows;
     }
-    public function insertPost($title,$imgurl,$category,$place,$uid){
-        $mainquery = "INSERT INTO {$this->tableName}(`title`,  `imgurl`,`category_id`, `ort_id`,`user_id` )
-VALUES                              (?,?,?,?,?);";
-        $cidquery = "SELECT cid FROM category WHERE category_name = ?";
-        $oidquery = "SELECT oid FROM ort WHERE ort = ?";
-        $statement1 = ConnectionHandler::getConnection()->prepare($cidquery);
-        $statement1->bind_param('s',$category);
-        $statement1->execute();
-        $cid = $statement1->get_result();
-        if(!$cid){
-            throw new Exception($statement1->error);
-        }
-        $statement2 = ConnectionHandler::getConnection()->prepare($oidquery);
-        $statement2->bind_param('s',$place);
-        $statement2->execute();
-        $oid = $statement2->get_result();
-        if(!$oid){
-            throw new Exception($statement2->error);
-        }
-        $statement3 = ConnectionHandler::getConnection()->prepare($mainquery);
-        $statement3->bind_param('ssssi',$title,$imgurl,$cid,$oid,$uid);
-        $statement3->execute();
-        if(!$statement3->execute()){
-            throw new Exception($statement3->error);
-        }
+    public function insertPost($pid,$title,$imgurl,$category,$plz,$uid){
+        $mainquery = "INSERT INTO post(`pid`,`title`, `imgurl`,`category_id`, `ort_id`,`user_id` ) VALUES (?,?,?,(SELECT cid FROM category WHERE category_name = ?), ? ,?)";
+        $statement = ConnectionHandler::getConnection()->prepare($mainquery);
+        $statement->bind_param('isssii',$pid,$title,$imgurl,$category,$plz,$uid);
+        $statement->execute();
+
     }
 
 }
