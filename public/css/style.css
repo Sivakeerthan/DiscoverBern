@@ -27,7 +27,7 @@ width: 100%;
   height: auto;
 }
 .login{
-  color: black;
+  color: #607D8B;
   font-size: 20px;
   padding-left: 5px;
   padding-right: 5px;
@@ -74,7 +74,7 @@ width: 100%;
 }
 .login:hover{
   transition: 112ms;
-  color:black;
+  color: #607D8B;
 }
 .restaurants:hover .navicon2{
   color: white;
@@ -234,4 +234,12 @@ width: 100%;
 .uploadUser{
   font-size: 12px;
   color:#607D8B;
+}
+.rates{
+  margin-top: 20px;
+  font-size: 13px;
+}
+.userRate{
+  float: right;
+  margin-right: 30px;
 }
