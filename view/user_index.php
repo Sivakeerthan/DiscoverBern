@@ -60,7 +60,7 @@
                                 <br />
                                 <?php endif;?>
                                 <?php if($post->ratermv > 0):?>
-                                <label>Dislikes: <?=$img->ratermv?></label>
+                                <label>Dislikes: <?=$post->ratermv?></label>
                                 <?php else:?>
                                 <label>Dislikes: 0</label>
                                 <?php endif; ?>

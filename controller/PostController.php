@@ -14,7 +14,6 @@ class PostController
       $category = $_POST['postCategory'];
       $postRepository = new PostRepository();
       $id = count($postRepository->readAll()) + 1;
-      session_start();
       $uid = $_SESSION['uid'];
       $plz =$_POST['postPlace'];
       $imageFileType = strtolower(pathinfo($_FILES['fileToUpload']['name'],PATHINFO_EXTENSION));
@@ -71,7 +70,7 @@ class PostController
     public function rateAdd(){
         $postRepository = new PostRepository();
         $postRepository->doRateAdd($_GET['post']);
-        if($_GET['pid'] = 'wandern'){
+        if($_GET['post'] = 'wandern'){
             $category = 'nature';
         }
         else{

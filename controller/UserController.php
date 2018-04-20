@@ -17,7 +17,6 @@ class UserController
         $postRepository = new PostRepository();
         $view = new View('user_index');
         $view->title = 'Profil';
-        session_start();
         if(isset($_SESSION['uid'])) {
             $view->user = $userRepository->readById($_SESSION['uid']);
             $view->heading = $view->user->uname;
