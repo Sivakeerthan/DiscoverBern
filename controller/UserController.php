@@ -57,8 +57,10 @@ class UserController
             $id = $userRepo->getID($email,$pw);
             echo "ID:".$id;
             if($id>0){
+                $user = $userRepo->redById($id);
                 session_start();
                 $_SESSION['uid'] = $id;
+                $_SESSION['admin'] = $user->admin;
                 if(isset($_SESSION['uid'])) {
                     header('Location: /user');
                     exit();

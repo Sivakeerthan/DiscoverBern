@@ -96,4 +96,5 @@ class PostController
         $postRepository->deleteById($_GET['pid']);
         header('Location: /user');
     }
+    
 }

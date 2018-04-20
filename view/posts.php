@@ -1,18 +1,22 @@
 
 
 <?php
-echo "<div class='rows'>";
+echo "<div class='rows2'>";
 
  foreach($images AS $img){
      echo "
-    
+
     <div class='content'>
     <img class='img2' src='$img->imgurl'/>
     <div class='text'>
     <h1 class='bildTitel'>$img->title</h1>
     <p class='uploadUser'>Hochgeladen von $img->uname</p>
-    <p class='imgTags'>1, 2, 3, 4, 5</p>
-    <a class='linkMap' href='https://www.openstreetmap.org/search?query=$img->uname%20$img->imgurl' target='_blank'>3027, Bern</a>
+    ";
+    if (isset($_SESSION) && !empty($_SESSION)&& $_SESSION['admin'] == 1){
+    echo "<a href='/post/delete?pid=<?= $img->pid; ?>'><label>Löschen</label></a>";
+    }
+    echo "<p class='imgTags'>1, 2, 3, 4, 5</p>
+    <a class='linkMap' href='https://www.openstreetmap.org/search?query=sternen%20bümpliz' target='_blank'>3027, Bern</a>
     <div class='rates'>
     ";
      if($img->rateadd > 0){ echo"
@@ -45,6 +49,7 @@ echo "<div class='rows'>";
     </div>
     </div>
     </div>
+    </br>
   ";
 }
 echo "</div>";
