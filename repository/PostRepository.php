@@ -55,12 +55,13 @@ class PostRepository extends Repository
         $statement->execute();
 
     }
-<<<<<<< HEAD
+
     public function showPosts($uid){
       $query = "SELECT title FROM $this->tableName WHERE uid ?";
       $statement = ConnectionHandler::getConnection()->prepare($query);
       $statement->execute();
-=======
+    }
+
     public function getPostByUrl($url){
         $query = "SELECT pid FROM post WHERE imgurl = ?";
         $statement = ConnectionHandler::getConnection()->prepare($query);
@@ -105,7 +106,7 @@ class PostRepository extends Repository
         $stmtRmv = ConnectionHandler::getConnection()->prepare($rmvQuery);
         $stmtRmv->bind_param('ii',$newRate,$pid);
         $stmtRmv->execute();
->>>>>>> e8a5381e1b090c4bee6fb4ec0375341834c9f424
+
 
     }
 }

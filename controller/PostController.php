@@ -11,7 +11,7 @@ class PostController
 {
     function create(){
 
-<<<<<<< HEAD
+
             $title = htmlspecialchars($_POST['postTitle']);
             $category = $_POST['postCategory'];
             $postRepository = new PostRepository();
@@ -25,7 +25,7 @@ class PostController
             $this->upload($target_file);
             $postRepository->insertPost($id,$title, $target_file, $category, $plz,$uid);
             header('Location: /user');
-=======
+
       $title = htmlspecialchars($_POST['postTitle']);
       $category = $_POST['postCategory'];
       $postRepository = new PostRepository();
@@ -40,7 +40,7 @@ class PostController
       $postRepository->insertPost($id,$title, $target_file, $category, $plz,$uid);
       header('Location: /user');
       exit();
->>>>>>> e8a5381e1b090c4bee6fb4ec0375341834c9f424
+
     }
     function upload($target_file){
         $uploadOk = 1;
