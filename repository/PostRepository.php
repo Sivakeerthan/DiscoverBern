@@ -9,7 +9,7 @@ class PostRepository extends Repository
 
     public function readByCategory($category)
     {
-      $query = "SELECT p.pid, p.imgurl, p.title,c.category_name,u.uname FROM $this->tableName AS p JOIN user AS u ON p.user_id=u.uid JOIN category AS c ON p.category_id = c.cid WHERE c.category_name = ?";
+      $query = "SELECT p.pid, p.imgurl, p.title,c.category_name,u.uname, p.rateadd, p.ratermv FROM $this->tableName AS p JOIN user AS u ON p.user_id=u.uid JOIN category AS c ON p.category_id = c.cid WHERE c.category_name = ?";
       $statement = ConnectionHandler::getConnection()->prepare($query);
       $statement->bind_param('s', $category);
       $statement->execute();
@@ -77,16 +77,19 @@ class PostRepository extends Repository
 
     public function doRateAdd($pid){
         $currQuery = "Select rateadd FROM {$this->tableName} WHERE pid = ?";
+        echo "PID:".$pid;
         $stmtCurr = ConnectionHandler::getConnection()->prepare($currQuery);
         $stmtCurr->bind_param('i',$pid);
         $stmtCurr->execute();
         $currRate = intval($stmtCurr->get_result());
-        echo "Curr: ".$currRate;
+        if(is_int($currRate)) {
+            echo "Curr: " . $currRate;
+        }
         if(!$currRate){
             throw new Exception($stmtCurr->error);
         }
         $newRate = $currRate +1;
-        $addQuery = "UPDATE TABLE {$this->tableName} SET rateadd = ? WHERE pid = ?";
+        $addQuery = "UPDATE {$this->tableName} SET rateadd = ? WHERE pid = ?";
         $stmtAdd = ConnectionHandler::getConnection()->prepare($addQuery);
         $stmtAdd->bind_param('ii',$newRate,$pid);
         $stmtAdd->execute();
@@ -94,18 +97,22 @@ class PostRepository extends Repository
     }
     public function doRateRmv($pid){
         $currQuery = "Select ratermv FROM {$this->tableName} WHERE pid = ?";
+        echo "PID:".$pid;
         $stmtCurr = ConnectionHandler::getConnection()->prepare($currQuery);
         $stmtCurr->bind_param('i',$pid);
         $stmtCurr->execute();
-        $currRate = $stmtCurr->get_result();
+        $currRate = intval($stmtCurr->get_result());
+        if(is_int($currRate)) {
+            echo "Curr: " . $currRate;
+        }
         if(!$currRate){
             throw new Exception($stmtCurr->error);
         }
         $newRate = $currRate +1;
-        $rmvQuery = "UPDATE TABLE {$this->tableName} SET ratermv = ? WHERE pid = ?";
-        $stmtRmv = ConnectionHandler::getConnection()->prepare($rmvQuery);
-        $stmtRmv->bind_param('ii',$newRate,$pid);
-        $stmtRmv->execute();
+        $addQuery = "UPDATE {$this->tableName} SET ratermv = ? WHERE pid = ?";
+        $stmtAdd = ConnectionHandler::getConnection()->prepare($addQuery);
+        $stmtAdd->bind_param('ii',$newRate,$pid);
+        $stmtAdd->execute();
 
 
     }

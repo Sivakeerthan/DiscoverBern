@@ -8,16 +8,16 @@
 	<?php else: ?>
 			<div class="panel panel-default">
                 <div id="createPost">
-                    <form action="post/create" method="post" enctype="multipart/form-data">
+                    <form action="post/createPost" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="postTitle">Titel: </label>
                         <input type="text" name="postTitle" id="postTitle" placeholder="Titel">
                     </div>
-                        <div class="form-group">
+                    <div class="form-group">
                         <label for="fileToUpload">Bild:</label>
                         <input type="file" name="fileToUpload" id="fileToUpload">
                     </div>
-                        <div class="form-group">
+                    <div class="form-group">
                         <label for="postCategory">Kategorie:</label>
                         <select name="postCategory" id="postCategory">
                             <option value="restaurants">Restaurants</option>
@@ -52,9 +52,18 @@
                             <p class='imgTags'>1, 2, 3, 4, 5</p>
                             <a class='linkMap' href='https://www.openstreetmap.org/search?query=<?=$post->uname?>%20<?=$post->imgurl?>' target='_blank'>3027, Bern</a>
                             <div class='rates'>
-                                <label>Likes: 1</label>
+                               <?php if($post->rateadd > 0): ?>
+                                <label>Likes: <?=$post->rateadd?></label>
                                 <br />
-                                <label>Dislikes: 3</label>
+                                <?php else:?>
+                                <label>Likes: 0</label>
+                                <br />
+                                <?php endif;?>
+                                <?php if($post->ratermv > 0):?>
+                                <label>Dislikes: <?=$img->ratermv?></label>
+                                <?php else:?>
+                                <label>Dislikes: 0</label>
+                                <?php endif; ?>
                             </div>
                             <div class="edit">
                                 <a href="/post/delete?pid=<?= $post->pid; ?>"><label>Löschen</label></a>

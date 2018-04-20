@@ -9,23 +9,7 @@ require_once '../repository/PostRepository.php';
 
 class PostController
 {
-    function create(){
-
-
-            $title = htmlspecialchars($_POST['postTitle']);
-            $category = $_POST['postCategory'];
-            $postRepository = new PostRepository();
-            $id = count($postRepository->readAll()) + 1;
-            session_start();
-            $uid = $_SESSION['uid'];
-            $plz =$_POST['postPlace'];
-            $imageFileType = strtolower(pathinfo($_FILES['fileToUpload']['name'],PATHINFO_EXTENSION));
-            $target_dir = "images/" . $category . "/";
-            $target_file = $target_dir."img".$id.'.'.$imageFileType;
-            $this->upload($target_file);
-            $postRepository->insertPost($id,$title, $target_file, $category, $plz,$uid);
-            header('Location: /user');
-
+    function createPost(){
       $title = htmlspecialchars($_POST['postTitle']);
       $category = $_POST['postCategory'];
       $postRepository = new PostRepository();
@@ -39,7 +23,6 @@ class PostController
       $this->upload($target_file);
       $postRepository->insertPost($id,$title, $target_file, $category, $plz,$uid);
       header('Location: /user');
-      exit();
 
     }
     function upload($target_file){
@@ -85,19 +68,28 @@ class PostController
         }
 
     }
-    public function rateAdd($post,$category){
+    public function rateAdd(){
         $postRepository = new PostRepository();
-        $postRepository->doRateAdd($post);
+        $postRepository->doRateAdd($_GET['post']);
+        if($_GET['pid'] = 'wandern'){
+            $category = 'nature';
+        }
+        else{
+            $category = $_GET['post'];
+        }
         header('Location: /'.$category);
-        exit();
+
     }
     public function rateRmv(){
-        $view = new View('user_index');
         $postRepository = new PostRepository();
-        $post = $_POST['pid'];
-        $postRepository->doRateRmv($post);
-        header('Location: /'.$_GET['category']);
-        exit();
+        $postRepository->doRateRmv($_GET['post']);
+        if($_GET['post'] = 'wandern'){
+            $category = 'nature';
+        }
+        else{
+            $category = $_GET['post'];
+        }
+        header('Location: /'.$category);
     }
 
     public function delete(){

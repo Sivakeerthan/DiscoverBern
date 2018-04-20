@@ -90,7 +90,6 @@ class UserController
             if($pw1==$pw2) {
                 $userRepository = new UserRepository();
                 $userRepository->create($uname, $email, $pw1);
-
             }
             else{
 
