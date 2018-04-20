@@ -21,7 +21,7 @@ class PostController
       $target_file = $target_dir."img".$id.'.'.$imageFileType;
       $this->upload($target_file);
       $postRepository->insertPost($id,$title, $target_file, $category, $plz,$uid);
-     //header('Location: /user');
+     header('Location: /user');
 
     }
     function upload($target_file){
