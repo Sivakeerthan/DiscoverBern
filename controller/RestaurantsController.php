@@ -6,8 +6,9 @@ class RestaurantsController{
 
   public function index(){
 
-    session_start();
+    if(isset($_SESSION['uid'])) {
     $_SESSION['uid'];
+    }
 
     $view = new View('posts');
     $postRepository = new PostRepository();
