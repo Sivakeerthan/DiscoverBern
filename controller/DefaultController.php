@@ -34,20 +34,27 @@ class DefaultController
 
     public function index()
     {
+      require_once '../repository/PostRepository.php';
         // In diesem Fall möchten wir dem Benutzer die View mit dem Namen
         //   "default_index" rendern. Wie das genau funktioniert, ist in der
         //   View Klasse beschrieben.
+        $postRepository = new PostRepository();
 
-        session_start();
+        $restaurant = $postRepository->readByCategory('restaurants');
+        $wandern = $postRepository->readByCategory('wandern');
+        $bars = $postRepository->readByCategory('bars');
+        $tourism = $postRepository->readByCategory('tourism');
         $view = new View('default_index');
         $view->title = 'DiscoverBern';
         $view->heading = 'Home';
-        $images = array('/images/random_image/img1.jpg', '/images/random_image/img2.jpg','/images/random_image/img3.jpg','/images/random_image/img4.jpg','/images/random_image/img5.jpg','/images/random_image/img6.jpg','/images/random_image/img7.jpg');
-        shuffle($images);
-        $view->img1 = $images[0];
-        $view->img2 = $images[1];
-        $view->img3 = $images[2];
-        $view->img4 = $images[3];
+        shuffle($restaurant);
+        shuffle($wandern);
+        shuffle($bars);
+        shuffle($tourism);
+        $view->img1 = $restaurant[0]->imgurl;
+        $view->img2 = $wandern[0]->imgurl;
+        $view->img3 = $bars[0]->imgurl;
+        $view->img4 = $tourism[0]->imgurl;
         $view->display();
     }
 }
