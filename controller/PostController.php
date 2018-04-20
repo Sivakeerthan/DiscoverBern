@@ -17,11 +17,11 @@ class PostController
       $uid = $_SESSION['uid'];
       $plz =$_POST['postPlace'];
       $imageFileType = strtolower(pathinfo($_FILES['fileToUpload']['name'],PATHINFO_EXTENSION));
-      $target_dir = "/images/" . $category . "/";
+      $target_dir = "images/" . $category . "/";
       $target_file = $target_dir."img".$id.'.'.$imageFileType;
       $this->upload($target_file);
       $postRepository->insertPost($id,$title, $target_file, $category, $plz,$uid);
-      header('Location: /user');
+     //header('Location: /user');
 
     }
     function upload($target_file){

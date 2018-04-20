@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 19. Apr 2018 um 16:02
+-- Erstellungszeit: 20. Apr 2018 um 13:28
 -- Server-Version: 10.1.31-MariaDB
 -- PHP-Version: 7.2.4
 
@@ -595,13 +595,6 @@ CREATE TABLE `post` (
   `ratermv` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Daten für Tabelle `post`
---
-
-INSERT INTO `post` (`pid`, `title`, `category_id`, `imgurl`, `user_id`, `ort_id`, `rateadd`, `ratermv`) VALUES
-(1, 'FANCY1', 1, '/images/restaurants/2.png', 2, 2535, NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -699,7 +692,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT für Tabelle `post`
 --
 ALTER TABLE `post`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT für Tabelle `tags`

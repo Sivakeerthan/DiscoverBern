@@ -77,18 +77,16 @@ class PostRepository extends Repository
 
     public function doRateAdd($pid){
         $currQuery = "Select rateadd FROM {$this->tableName} WHERE pid = ?";
-        echo "PID:".$pid;
+       echo "PID:".$pid;
         $stmtCurr = ConnectionHandler::getConnection()->prepare($currQuery);
         $stmtCurr->bind_param('i',$pid);
         $stmtCurr->execute();
-        $currRate = intval($stmtCurr->get_result());
-        if(is_int($currRate)) {
-            echo "Curr: " . $currRate;
-        }
+        $currRate = $stmtCurr->get_result()->fetch_assoc();
+
         if(!$currRate){
             throw new Exception($stmtCurr->error);
         }
-        $newRate = $currRate +1;
+        $newRate = $currRate['rateadd'] +1;
         $addQuery = "UPDATE {$this->tableName} SET rateadd = ? WHERE pid = ?";
         $stmtAdd = ConnectionHandler::getConnection()->prepare($addQuery);
         $stmtAdd->bind_param('ii',$newRate,$pid);
@@ -101,18 +99,15 @@ class PostRepository extends Repository
         $stmtCurr = ConnectionHandler::getConnection()->prepare($currQuery);
         $stmtCurr->bind_param('i',$pid);
         $stmtCurr->execute();
-        $currRate = intval($stmtCurr->get_result());
-        if(is_int($currRate)) {
-            echo "Curr: " . $currRate;
-        }
+        $currRate = $stmtCurr->get_result()->fetch_assoc();
         if(!$currRate){
             throw new Exception($stmtCurr->error);
         }
-        $newRate = $currRate +1;
+        $newRate = $currRate['ratermv'] +1;
         $addQuery = "UPDATE {$this->tableName} SET ratermv = ? WHERE pid = ?";
-        $stmtAdd = ConnectionHandler::getConnection()->prepare($addQuery);
-        $stmtAdd->bind_param('ii',$newRate,$pid);
-        $stmtAdd->execute();
+        $stmtRmv = ConnectionHandler::getConnection()->prepare($addQuery);
+        $stmtRmv->bind_param('ii',$newRate,$pid);
+        $stmtRmv->execute();
 
 
     }
