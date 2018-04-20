@@ -55,7 +55,12 @@ class PostRepository extends Repository
         $statement->execute();
 
     }
+    public function showPosts($uid){
+      $query = "SELECT title FROM $this->tableName WHERE uid ?";
+      $statement = ConnectionHandler::getConnection()->prepare($query);
+      $statement->execute();
 
+    }
 }
 
 

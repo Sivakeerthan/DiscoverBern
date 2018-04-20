@@ -5,6 +5,7 @@ require_once '../repository/PostRepository.php';
 class RestaurantsController{
 
   public function index(){
+      session_start();
     $view = new View('posts');
     $postRepository = new PostRepository();
 
