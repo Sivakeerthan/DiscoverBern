@@ -3,7 +3,7 @@
         <div class="form-group">
             <label class="col-md-2 control-label" for="email">Mail</label>
             <div class="col-md-4">
-                <input id="email" name="email" type="text" placeholder="Mail" class="form-control input-md">
+                <input id="email" name="email" type="text" placeholder="Mail" class="form-control input-md" onkeydown="Validate()">
             </div>
         </div>
         <div class="form-group">

@@ -67,7 +67,7 @@
                             </div>
                             <div class="edit">
                                 <a href="/post/delete?pid=<?= $post->pid; ?>"><label>Löschen</label></a>
-                                <a href="/post/update">Bearbeiten</a>
+                                <a href="/post/update?pid=<?= $post->pid; ?>">Bearbeiten</a>
                             </div>
                         </div>
                     </div>

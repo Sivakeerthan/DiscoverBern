@@ -9,6 +9,9 @@ require_once '../repository/PostRepository.php';
 
 class PostController
 {
+    public function index(){
+        header('Location: /user');
+    }
     function createPost(){
       $title = htmlspecialchars($_POST['postTitle']);
       $category = $_POST['postCategory'];
@@ -95,5 +98,28 @@ class PostController
         $postRepository = new PostRepository();
         $postRepository->deleteById($_GET['pid']);
         header('Location: /user');
+    }
+    public function update(){
+        $postRepository = new PostRepository();
+        $view = new View('post_update');
+        $view->title = 'Update';
+        if(isset($_SESSION['uid'])) {
+            $view->post = $postRepository->readById($_GET['pid']);
+            $view->heading = 'Update: '.$view->post->title;
+            $view->pid = $_GET['pid'];
+            $view->display();
+        }
+        else{
+            $view->heading = "Access Denied!";
+            $view->display();
+        }
+    }
+    public function updatePost(){
+        $pid = $_GET['pid'];
+        $title = htmlspecialchars($_POST['postTitle']);
+        $postRepository = new PostRepository();
+        $postRepository->updateById($title,$pid);
+        header('Location: /user');
+
     }
 }
