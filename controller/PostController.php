@@ -88,17 +88,17 @@ class PostController
     public function rateAdd(){
         $view = new View('user_index');
         $postRepository = new PostRepository();
-        $post = $postRepository->getPostByUrl($view->img->imgurl);
+        $post = $_POST['postPid'];
         $postRepository->doRateAdd($post);
-        header('Location: /'.$view->img->category);
+        header('Location: /'.$_POST['postCategory']);
         exit();
     }
     public function rateRmv(){
         $view = new View('user_index');
         $postRepository = new PostRepository();
-        $post = $postRepository->getPostByUrl($view->img->imgurl);
+        $post = $_POST['pid'];
         $postRepository->doRateRmv($post);
-        header('Location: /'.$view->img->category);
+        header('Location: /'.$_GET['category']);
         exit();
     }
 }

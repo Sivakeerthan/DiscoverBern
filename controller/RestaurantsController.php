@@ -5,7 +5,6 @@ require_once '../repository/PostRepository.php';
 class RestaurantsController{
 
   public function index(){
-      session_start();
 
     session_start();
     $_SESSION['uid'];

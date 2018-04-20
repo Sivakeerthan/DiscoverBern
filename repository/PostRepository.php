@@ -9,7 +9,7 @@ class PostRepository extends Repository
 
     public function readByCategory($category)
     {
-      $query = "SELECT p.imgurl, p.title, u.uname FROM $this->tableName AS p JOIN user AS u ON p.user_id=u.uid WHERE category_id = (SELECT cid FROM category where category_name = ?)";
+      $query = "SELECT p.pid, p.imgurl, p.title,c.category_name,u.uname FROM $this->tableName AS p JOIN user AS u ON p.user_id=u.uid JOIN category AS c ON p.category_id = c.cid WHERE c.category_name = ?";
       $statement = ConnectionHandler::getConnection()->prepare($query);
       $statement->bind_param('s', $category);
       $statement->execute();
@@ -24,7 +24,6 @@ class PostRepository extends Repository
       while ($row = $result->fetch_object()) {
           $rows[] = $row;
       }
-
       return $rows;
 
     }
@@ -57,31 +56,20 @@ class PostRepository extends Repository
     }
 
     public function showPosts($uid){
-      $query = "SELECT title FROM $this->tableName WHERE uid ?";
+      $query = "SELECT title FROM {$this->tableName} WHERE uid = ?";
       $statement = ConnectionHandler::getConnection()->prepare($query);
+      $statement->bind_param('i',$uid);
       $statement->execute();
     }
 
-    public function getPostByUrl($url){
-        $query = "SELECT pid FROM post WHERE imgurl = ?";
-        $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('s',$url);
-        $statement->execute();
 
-        $pid = $statement->get_result();
-        if(!$pid){
-            throw new Exception($statement->error);
-        }
-        else{
-            return $pid;
-        }
-    }
     public function doRateAdd($pid){
         $currQuery = "Select rateadd FROM {$this->tableName} WHERE pid = ?";
         $stmtCurr = ConnectionHandler::getConnection()->prepare($currQuery);
         $stmtCurr->bind_param('i',$pid);
         $stmtCurr->execute();
-        $currRate = $stmtCurr->get_result();
+        $currRate = intval($stmtCurr->get_result());
+        echo "Curr: ".$currRate;
         if(!$currRate){
             throw new Exception($stmtCurr->error);
         }

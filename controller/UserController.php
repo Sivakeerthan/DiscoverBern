@@ -70,6 +70,7 @@ class UserController
         }
     }
     public function logout(){
+        session_start();
         $_SESSION['uid'];
         session_destroy();
         unset($_SESSION['uid']);

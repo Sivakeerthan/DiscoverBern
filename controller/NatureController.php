@@ -4,9 +4,6 @@ class NatureController{
 
   public function index(){
 
-  session_start();
-    $postRepository = new PostRepository();
-
 
       session_start();
       $_SESSION['uid'];
