@@ -73,7 +73,34 @@ class PostRepository extends Repository
 
         return $rows;
     }
+    public function readById($id)
+    {
+        // Query erstellen
+        $query = "SELECT * FROM {$this->tableName} WHERE pid=?";
 
+        // Datenbankverbindung anfordern und, das Query "preparen" (vorbereiten)
+        // und die Parameter "binden"
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('i', $id);
+
+        // Das Statement absetzen
+        $statement->execute();
+
+        // Resultat der Abfrage holen
+        $result = $statement->get_result();
+        if (!$result) {
+            throw new Exception($statement->error);
+        }
+
+        // Ersten Datensatz aus dem Reultat holen
+        $row = $result->fetch_object();
+
+        // Datenbankressourcen wieder freigeben
+        $result->close();
+
+        // Den gefundenen Datensatz zurückgeben
+        return $row;
+    }
 
     public function doRateAdd($pid){
         $currQuery = "Select rateadd FROM {$this->tableName} WHERE pid = ?";
@@ -121,6 +148,15 @@ class PostRepository extends Repository
         if (!$statement->execute()) {
             throw new Exception($statement->error);
         }
+    }
+    public function updateById($title,$id){
+        echo $title." ".$id;
+        $query = "UPDATE {$this->tableName} SET title = ? WHERE pid = ?";
+
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('si',$title, $id);
+        echo "st:".print_r($statement);
+        $statement->execute();
     }
 }
 
