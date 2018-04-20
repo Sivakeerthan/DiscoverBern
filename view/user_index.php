@@ -3,7 +3,7 @@
     $ort = array();
     if (!isset($_SESSION['uid']) && empty($user)): ?>
 		<div class="dhd">
-			<h2 class="item title">Sie müssen sich einloggen!</h2>
+			<h2 class="item title">Melden Sie sich bitte An!</h2>
 		</div>
 	<?php else: ?>
 			<div class="panel panel-default">

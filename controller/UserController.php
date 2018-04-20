@@ -26,7 +26,7 @@ class UserController
             $view->display();
         }
         else{
-            $view->heading = "Access Denied!";
+            $view->heading = "Wilkommen!";
             $view->display();
         }
     }
