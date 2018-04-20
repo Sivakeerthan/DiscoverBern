@@ -85,12 +85,10 @@ class PostController
         }
 
     }
-    public function rateAdd(){
-        $view = new View('user_index');
+    public function rateAdd($post,$category){
         $postRepository = new PostRepository();
-        $post = $_POST['postPid'];
         $postRepository->doRateAdd($post);
-        header('Location: /'.$_POST['postCategory']);
+        header('Location: /'.$category);
         exit();
     }
     public function rateRmv(){
@@ -104,6 +102,7 @@ class PostController
 
     public function delete(){
         $postRepository = new PostRepository();
-        $postRepository->deleteById();
+        $postRepository->deleteById($_GET['pid']);
+        header('Location: /user');
     }
 }

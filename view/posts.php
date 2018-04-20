@@ -27,7 +27,7 @@ echo "<div class='rows'>";
    <form method='post'>
     <input type='hidden' name='postPid' id='postPid' value='$img->pid'>
     <input type='hidden' name='postCategory' id='postCategory' value='$img->category_name'>
-    <a class='userRate' href='post/rateAdd'>like</a>
+    <a class='userRate' href='post/rateAdd?post=$img->pid&category=$img->category_name'>like</a>
     <a class='userRate' href='post/rateRmv'>dislike</a>
       </form>";
     }

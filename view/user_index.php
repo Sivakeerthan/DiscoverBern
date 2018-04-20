@@ -50,15 +50,15 @@
                             <h1 class='bildTitel'><?=$post->title?></h1>
                             <p class='uploadUser'>Hochgeladen von <?=$post->uname?></p>
                             <p class='imgTags'>1, 2, 3, 4, 5</p>
-                            <a class='linkMap' href='https://www.openstreetmap.org/search?query=$img->uname%20$img->imgurl' target='_blank'>3027, Bern</a>
+                            <a class='linkMap' href='https://www.openstreetmap.org/search?query=<?=$post->uname?>%20<?=$post->imgurl?>' target='_blank'>3027, Bern</a>
                             <div class='rates'>
                                 <label>Likes: 1</label>
                                 <br />
                                 <label>Dislikes: 3</label>
                             </div>
                             <div class="edit">
-                                <a href="post/delete">Löschen</a>
-                                <a href="post/update">Bearbeiten</a>
+                                <a href="/post/delete?pid=<?= $post->pid; ?>"><label>Löschen</label></a>
+                                <a href="/post/update">Bearbeiten</a>
                             </div>
                         </div>
                     </div>
