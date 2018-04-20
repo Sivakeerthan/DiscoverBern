@@ -55,10 +55,57 @@ class PostRepository extends Repository
         $statement->execute();
 
     }
+<<<<<<< HEAD
     public function showPosts($uid){
       $query = "SELECT title FROM $this->tableName WHERE uid ?";
       $statement = ConnectionHandler::getConnection()->prepare($query);
       $statement->execute();
+=======
+    public function getPostByUrl($url){
+        $query = "SELECT pid FROM post WHERE imgurl = ?";
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('s',$url);
+        $statement->execute();
+
+        $pid = $statement->get_result();
+        if(!$pid){
+            throw new Exception($statement->error);
+        }
+        else{
+            return $pid;
+        }
+    }
+    public function doRateAdd($pid){
+        $currQuery = "Select rateadd FROM {$this->tableName} WHERE pid = ?";
+        $stmtCurr = ConnectionHandler::getConnection()->prepare($currQuery);
+        $stmtCurr->bind_param('i',$pid);
+        $stmtCurr->execute();
+        $currRate = $stmtCurr->get_result();
+        if(!$currRate){
+            throw new Exception($stmtCurr->error);
+        }
+        $newRate = $currRate +1;
+        $addQuery = "UPDATE TABLE {$this->tableName} SET rateadd = ? WHERE pid = ?";
+        $stmtAdd = ConnectionHandler::getConnection()->prepare($addQuery);
+        $stmtAdd->bind_param('ii',$newRate,$pid);
+        $stmtAdd->execute();
+
+    }
+    public function doRateRmv($pid){
+        $currQuery = "Select ratermv FROM {$this->tableName} WHERE pid = ?";
+        $stmtCurr = ConnectionHandler::getConnection()->prepare($currQuery);
+        $stmtCurr->bind_param('i',$pid);
+        $stmtCurr->execute();
+        $currRate = $stmtCurr->get_result();
+        if(!$currRate){
+            throw new Exception($stmtCurr->error);
+        }
+        $newRate = $currRate +1;
+        $rmvQuery = "UPDATE TABLE {$this->tableName} SET ratermv = ? WHERE pid = ?";
+        $stmtRmv = ConnectionHandler::getConnection()->prepare($rmvQuery);
+        $stmtRmv->bind_param('ii',$newRate,$pid);
+        $stmtRmv->execute();
+>>>>>>> e8a5381e1b090c4bee6fb4ec0375341834c9f424
 
     }
 }

@@ -59,17 +59,22 @@ class UserController
                 $_SESSION['uid'] = $id;
                 if(isset($_SESSION['uid'])) {
                     header('Location: /user');
+                    exit();
                     print_r($_SESSION);
                 }
             }
             else{
                 header('Location: /user/login');
-                echo '<script>document.getElementById("meldung").text = "Ihr Passwort ist falsch"</script>';
-                $_POST['meldung'] = "Ihr Passwort ist falsch";
+                $_POST['meldung'] = "Ihre Anmeldedaten sind Falsch!!";
             }
         }
     }
-
+    public function logout(){
+        $_SESSION['uid'];
+        session_destroy();
+        unset($_SESSION['uid']);
+        header('Location: /');
+    }
     public function doCreate()
     {
         if ($_POST['send']) {
@@ -84,7 +89,8 @@ class UserController
 
             }
             else{
-                echo '<script>document.getElementById("meldung").value = "Ihre Passwörter stimmen nicht überein"</script>';
+
+                echo '<label>Ihre Passwörter stimmen nicht überein</label>';
             }
         }
 
