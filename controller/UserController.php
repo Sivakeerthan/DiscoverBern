@@ -2,6 +2,7 @@
 
 require_once '../repository/UserRepository.php';
 require_once '../repository/PlaceRepository.php';
+require_once '../repository/PostRepository.php';
 
 
 /**
@@ -13,6 +14,7 @@ class UserController
     public function index()
     {
         $userRepository = new UserRepository();
+        $postRepository = new PostRepository();
         $view = new View('user_index');
         $view->title = 'Profil';
         session_start();
@@ -21,6 +23,7 @@ class UserController
             $view->heading = $view->user->uname;
             $placeRepository = new PlaceRepository();
             $view->places = $placeRepository->readAll();
+            $view->posts = $postRepository->showPosts($_SESSION['uid']);
             $view->display();
         }
         else{

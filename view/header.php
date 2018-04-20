@@ -25,6 +25,7 @@
     <div class="navbar-head">
       <div id="logo">
           <a href="/"><img  id="db" src="/images/logo2.svg"/></a>
+          <a href="/user"><img id="upload" src="images/icons/ic_file_upload_black_24dp_2x.png"/></a>
       </div>
       <div id="links">
       <nav>

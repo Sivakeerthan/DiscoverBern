@@ -4,12 +4,8 @@
 echo "<div class='rows'>";
 
  foreach($images AS $img){
-     print_r($img);
      echo "
-    <form method='post'>
-    <input type='hidden' name='postPid' id='postPid' value='$img->pid'>
-    <input type='hidden' name='postCategory' id='postCategory' value='$img->category_name'>
-    </form>
+ 
     <div class='content'>
     <img class='img2' src='$img->imgurl'/>
     <div class='text'>
@@ -27,8 +23,13 @@ echo "<div class='rows'>";
         echo "<label class='userRate'><a href='/user/login'>Einloggen</a> zum Bewerten</label>";
       }
     else {
-      echo "<a class='userRate' href='post/rateAdd'>like</a>
-      <a class='userRate' href='post/rateRmv'>dislike</a>";
+      echo "
+   <form method='post'>
+    <input type='hidden' name='postPid' id='postPid' value='$img->pid'>
+    <input type='hidden' name='postCategory' id='postCategory' value='$img->category_name'>
+    <a class='userRate' href='post/rateAdd'>like</a>
+    <a class='userRate' href='post/rateRmv'>dislike</a>
+      </form>";
     }
     echo "
     </div>

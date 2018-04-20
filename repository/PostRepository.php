@@ -56,10 +56,22 @@ class PostRepository extends Repository
     }
 
     public function showPosts($uid){
-      $query = "SELECT title FROM {$this->tableName} WHERE uid = ?";
+      $query = "SELECT * FROM {$this->tableName} AS p JOIN user AS u ON p.user_id = u.uid WHERE user_id = ?";
       $statement = ConnectionHandler::getConnection()->prepare($query);
       $statement->bind_param('i',$uid);
       $statement->execute();
+        $result = $statement->get_result();
+        if (!$result) {
+            throw new Exception($statement->error);
+        }
+
+        // Datensätze aus dem Resultat holen und in das Array $rows speichern
+        $rows = array();
+        while ($row = $result->fetch_object()) {
+            $rows[] = $row;
+        }
+
+        return $rows;
     }
 
 
@@ -96,6 +108,17 @@ class PostRepository extends Repository
         $stmtRmv->execute();
 
 
+    }
+    public function deleteById($id)
+    {
+        $query = "DELETE FROM {$this->tableName} WHERE pid=?";
+
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('i', $id);
+
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
     }
 }
 

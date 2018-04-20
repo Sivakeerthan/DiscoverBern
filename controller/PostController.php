@@ -101,4 +101,9 @@ class PostController
         header('Location: /'.$_GET['category']);
         exit();
     }
+
+    public function delete(){
+        $postRepository = new PostRepository();
+        $postRepository->deleteById();
+    }
 }

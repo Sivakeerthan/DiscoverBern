@@ -12,10 +12,12 @@
                     <div class="form-group">
                         <label for="postTitle">Titel: </label>
                         <input type="text" name="postTitle" id="postTitle" placeholder="Titel">
-                    </div><div class="form-group">
+                    </div>
+                        <div class="form-group">
                         <label for="fileToUpload">Bild:</label>
                         <input type="file" name="fileToUpload" id="fileToUpload">
-                    </div><div class="form-group">
+                    </div>
+                        <div class="form-group">
                         <label for="postCategory">Kategorie:</label>
                         <select name="postCategory" id="postCategory">
                             <option value="restaurants">Restaurants</option>
@@ -24,22 +26,45 @@
                             <option value="tourism">Tourismus</option>
                         </select>
                     </div>
-                </div><div class="form-group">
+                <div class="form-group">
                     <label for="postPlace">Ort:</label>
                     <select name="postPlace" id="postPlace">
                         <?php foreach ($places AS $place): ?>
                             <option value='<?= $place->plz ?>'><?= $place->plz ?> <?= $place->ort ?></option>
                         <?php endforeach; ?>
                     </select>
-                </div<div class="form-group">
+                </div>
+                <div class="form-group">
                     <input type="submit" name="submit" value="Posten">
                     </div>
                     </form>
+            </div>
+            </div>
+            <div class="panel2 panel-default">
+                <div class="showMyPosts">
+                    <h2>Meine Posts</h2>
+                    <?php foreach ($posts AS $post): ?>
+                    <div class='content'>
+                        <img class='img2' src='<?=$post->imgurl?>'/>
+                        <div class='text'>
+                            <h1 class='bildTitel'><?=$post->title?></h1>
+                            <p class='uploadUser'>Hochgeladen von <?=$post->uname?></p>
+                            <p class='imgTags'>1, 2, 3, 4, 5</p>
+                            <a class='linkMap' href='https://www.openstreetmap.org/search?query=$img->uname%20$img->imgurl' target='_blank'>3027, Bern</a>
+                            <div class='rates'>
+                                <label>Likes: 1</label>
+                                <br />
+                                <label>Dislikes: 3</label>
+                            </div>
+                            <div class="edit">
+                                <a href="post/delete">Löschen</a>
+                                <a href="post/update">Bearbeiten</a>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <?php endforeach;?>
                 </div>
-				</div>
-				<div class="showMyPosts">
-
-				</div>
-			</div>
+            </div>
 	<?php endif ?>
 </article>
